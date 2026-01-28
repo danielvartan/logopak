@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=NetLogo 3D
+Comment=NetLogo 3D modeling environment
+Exec=NetLogo3D %F
+Icon=com.danielvartan.NetLogo3D
+Categories=Education;Science;Java;
+Terminal=false
+MimeType=application/x-netlogo-model;

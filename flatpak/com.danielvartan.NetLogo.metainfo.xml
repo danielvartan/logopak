@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.danielvartan.NetLogo</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0-or-later</project_license>
+  <name>NetLogo</name>
+  <summary>A multi-agent programmable modeling environment</summary>
+  <description>
+    <p>
+      NetLogo is a multi-agent programmable modeling environment. It is used by
+      students, teachers and researchers for simulating natural and social phenomena.
+      NetLogo is particularly well suited for modeling complex systems developing over time.
+    </p>
+    <p>
+      Modelers can give instructions to hundreds or thousands of "agents" all operating
+      independently. This makes it possible to explore the connection between the
+      micro-level behavior of individuals and the macro-level patterns that emerge
+      from their interaction.
+    </p>
+  </description>
+  <launchable type="desktop-id">com.danielvartan.NetLogo.desktop</launchable>
+  <url type="homepage">https://www.netlogo.org</url>
+  <provides>
+    <binary>NetLogo</binary>
+    <binary>NetLogo3D</binary>
+    <binary>HubNetClient</binary>
+    <binary>Behaviorsearch</binary>
+    <binary>netlogo</binary>
+    <binary>netlogo3d</binary>
+    <binary>hubnetclient</binary>
+    <binary>behaviorsearch</binary>
+    <mediatype>application/x-netlogo-model</mediatype>
+    <mediatype>application/x-behaviorsearch-model</mediatype>
+  </provides>
+  <categories>
+    <category>Education</category>
+    <category>Science</category>
+  </categories>
+  <mimetypes>
+    <mimetype>application/x-netlogo-model</mimetype>
+    <mimetype>application/x-behaviorsearch-model</mimetype>
+  </mimetypes>
+  <releases>
+    <release version="7.0.3" date="2025-12-01"/>
+  </releases>
+  <content_rating type="oars-1.1"/>
+</component>

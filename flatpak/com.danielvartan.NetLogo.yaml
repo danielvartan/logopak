@@ -1,0 +1,72 @@
+app-id: com.danielvartan.NetLogo
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+command: NetLogo
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --device=dri
+  - --filesystem=home
+
+modules:
+  - name: netlogo
+    buildsystem: simple
+    build-commands:
+      # Install NetLogo files
+      - mkdir -p /app/opt/netlogo
+      - cp -r NetLogo\ 7.0.3/* /app/opt/netlogo/
+
+      # Create symlinks for executables
+      - mkdir -p /app/bin
+      - |
+        for file in NetLogo NetLogo3D HubNetClient Behaviorsearch; do
+          ln -s /app/opt/netlogo/bin/${file} /app/bin/${file}
+        done
+
+      # Create lowercase command aliases
+      - |
+        ln -s /app/opt/netlogo/bin/NetLogo /app/bin/netlogo
+        ln -s /app/opt/netlogo/bin/NetLogo3D /app/bin/netlogo3d
+        ln -s /app/opt/netlogo/bin/HubNetClient /app/bin/hubnetclient
+        ln -s /app/opt/netlogo/bin/Behaviorsearch /app/bin/behaviorsearch
+
+      # Install desktop files
+      - install -Dm644 com.danielvartan.NetLogo.desktop /app/share/applications/com.danielvartan.NetLogo.desktop
+      - install -Dm644 com.danielvartan.NetLogo3D.desktop /app/share/applications/com.danielvartan.NetLogo3D.desktop
+      - install -Dm644 com.danielvartan.HubNetClient.desktop /app/share/applications/com.danielvartan.HubNetClient.desktop
+      - install -Dm644 com.danielvartan.Behaviorsearch.desktop /app/share/applications/com.danielvartan.Behaviorsearch.desktop
+
+      # Install application icons
+      - install -Dm644 NetLogo\ 7.0.3/icons/NetLogo.png /app/share/icons/hicolor/256x256/apps/com.danielvartan.NetLogo.png
+      - install -Dm644 NetLogo\ 7.0.3/icons/NetLogo3D.png /app/share/icons/hicolor/256x256/apps/com.danielvartan.NetLogo3D.png
+      - install -Dm644 NetLogo\ 7.0.3/icons/HubNetClient.png /app/share/icons/hicolor/256x256/apps/com.danielvartan.HubNetClient.png
+      - install -Dm644 NetLogo\ 7.0.3/icons/Behaviorsearch.png /app/share/icons/hicolor/256x256/apps/com.danielvartan.Behaviorsearch.png
+
+      # Install MIME type icons (for file associations)
+      - install -Dm644 NetLogo\ 7.0.3/icons/Model.png /app/share/icons/hicolor/128x128/mimetypes/application-x-netlogo-model.png
+      - install -Dm644 NetLogo\ 7.0.3/icons/BehaviorsearchModel.png /app/share/icons/hicolor/128x128/mimetypes/application-x-behaviorsearch-model.png
+
+      # Install MIME type definitions (for file associations)
+      - install -Dm644 application-x-netlogo-model.xml /app/share/mime/packages/application-x-netlogo-model.xml
+
+      # Install AppStream metadata
+      - install -Dm644 com.danielvartan.NetLogo.metainfo.xml /app/share/metainfo/com.danielvartan.NetLogo.metainfo.xml
+    sources:
+      - type: archive
+        url: https://downloads.netlogo.org/7.0.3/NetLogo-7.0.3-64.tgz
+        sha256: 7923c9c1e834f462208403ea07a5758629ea6dc57029cb31e01222595be10471
+      - type: file
+        path: com.danielvartan.NetLogo.desktop
+      - type: file
+        path: com.danielvartan.NetLogo3D.desktop
+      - type: file
+        path: com.danielvartan.HubNetClient.desktop
+      - type: file
+        path: com.danielvartan.Behaviorsearch.desktop
+      - type: file
+        path: com.danielvartan.NetLogo.metainfo.xml
+      - type: file
+        path: application-x-netlogo-model.xml

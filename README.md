@@ -92,6 +92,20 @@ Users can then install it with:
 flatpak install netlogo.flatpak
 ```
 
+## Uninstalling the Package
+
+To uninstall the `LogoPak` Flatpak package, run the following command:
+
+```bash
+flatpak uninstall com.danielvartan.NetLogo
+```
+
+Use the `--delete-data` option to remove all associated user data as well:
+
+```bash
+flatpak uninstall --delete-data com.danielvartan.NetLogo
+```
+
 ## Contributing
 
 [![Contributor Covenant 3.0 Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)

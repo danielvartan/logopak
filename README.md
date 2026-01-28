@@ -2,14 +2,14 @@
 
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![build-flatpak.yaml](https://github.com/danielvartan/logopak/actions/workflows/build-flatpak.yaml/badge.svg)](https://github.com/danielvartan/logopak/actions/workflows/build-flatpak.yaml)
+[![build-flatpak.yaml](https://github.com/danielvartan/logopak/actions/workflows/build-flatpack.yaml/badge.svg)](https://github.com/danielvartan/logopak/actions/workflows/build-flatpack.yaml)
 [![GPLv3 License Badge](https://img.shields.io/badge/license-GPLv3-bd0000.png)](https://www.gnu.org/licenses/gpl-3.0)
 [![Contributor Covenant 3.0 Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
 <!-- badges: end -->
 
 `LogoPak` is a [Flatpak](https://flatpak.org/) package for [NetLogo](https://ccl.northwestern.edu/netlogo/), a multi-agent programmable modeling environment for simulating natural and social phenomena. It simplifies the installation and management of NetLogo on Linux systems.
 
-The package includes all four NetLogo applications (NetLogo, NetLogo 3D, HubNet Client, and Behaviorsearch) and registers desktop files, file icons, and MIME types for NetLogo model files, enabling users to use NetLogo like any other native application on their system.
+The package includes all four NetLogo applications (NetLogo, NetLogo 3D, HubNet Client, and BehaviorSearch) and registers desktop files, file icons, and MIME types for NetLogo model files, enabling users to use NetLogo like any other native application on their system.
 
 ![](images/showcase.png)
 
@@ -21,6 +21,8 @@ The package includes all four NetLogo applications (NetLogo, NetLogo 3D, HubNet 
 
 `LogoPak` is not yet available on [Flathub](https://flathub.org/). To install it, you can download and install the pre-built bundle or build it locally from source. This assumes you have [Flatpak](https://flatpak.org/) installed on your system.
 
+The current version of NetLogo included in `LogoPak` is **NetLogo 7.0.3**.
+
 ### Using the Pre-built Bundle
 
 The easiest way to install `LogoPak` is by using the pre-built Flatpak bundle:
@@ -29,13 +31,18 @@ The easiest way to install `LogoPak` is by using the pre-built Flatpak bundle:
 2. Install the bundle by running the following command in your terminal:
 
 ```bash
-flatpak install --user path/to/netlogo.flatpak
+flatpak install --user netlogo.flatpak
 ```
-
 
 ### Building from Source
 
-To build `LogoPak` from source, you'll need [Flatpak](https://flatpak.org/) and [`flatpak-builder`](https://docs.flatpak.org/en/latest/flatpak-builder.html) on your system. Here's how to get them using your distribution's package manager:
+To build `LogoPak` from source, start by cloning this repository:
+
+```bash
+git clone https://github.com/danielvartan/logopak
+```
+
+You'll need [Flatpak](https://flatpak.org/) and [`flatpak-builder`](https://docs.flatpak.org/en/latest/flatpak-builder.html) on your system. Here's how to get them using your distribution's package manager:
 
 ```bash
 # On Ubuntu/Debian
@@ -92,15 +99,6 @@ flatpak run --command=HubNetClient com.danielvartan.netlogo
 flatpak run --command=Behaviorsearch com.danielvartan.netlogo
 ```
 
-Or use the lowercase aliases if you prefer:
-
-```bash
-flatpak run --command=netlogo com.danielvartan.netlogo
-flatpak run --command=netlogo3d com.danielvartan.netlogo
-flatpak run --command=hubnetclient com.danielvartan.netlogo
-flatpak run --command=behaviorsearch com.danielvartan.netlogo
-```
-
 #### Creating a Flatpak Bundle
 
 An easier way to distribute the application is by creating a Flatpak bundle. For that, run the following commands:
@@ -111,7 +109,7 @@ flatpak-builder --repo=repo --force-clean build-dir com.danielvartan.netlogo.yam
 flatpak build-bundle repo netlogo.flatpak com.danielvartan.netlogo
 ```
 
-After creating the `netlogo.flatpak` bundle, you can share it with others. Anyone can then install it with:
+After creating the `netlogo.flatpak` bundle, you can share it with others. Anyone can install it with:
 
 ```bash
 flatpak install netlogo.flatpak

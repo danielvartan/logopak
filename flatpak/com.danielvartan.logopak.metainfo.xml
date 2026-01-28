@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.danielvartan.netlogo</id>
+  <id>com.danielvartan.logopak</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0-or-later</project_license>
   <name>NetLogo</name>
   <summary>A multi-agent programmable modeling environment</summary>
-  <icon type="stock">com.danielvartan.netlogo.NetLogo</icon>
+  <icon type="stock">com.danielvartan.logopak.NetLogo</icon>
   <description>
     <p>
       NetLogo is a powerful, easy-to-learn programmable modeling environment for
@@ -46,7 +46,7 @@
       supported.
     </p>
   </description>
-  <launchable type="desktop-id">com.danielvartan.netlogo.NetLogo.desktop</launchable>
+  <launchable type="desktop-id">com.danielvartan.logopak.NetLogo.desktop</launchable>
   <url type="homepage">https://www.netlogo.org</url>
   <provides>
     <binary>NetLogo</binary>

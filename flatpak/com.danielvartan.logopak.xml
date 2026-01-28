@@ -7,12 +7,12 @@
     <glob pattern="*.nlogo3d" weight="50"/>
     <glob pattern="*.nlogox" weight="50"/>
     <glob pattern="*.nlogox3d" weight="50"/>
-    <icon name="com.danielvartan.netlogo.model"/>
+    <icon name="com.danielvartan.logopak.model"/>
   </mime-type>
   <mime-type type="application/x-behaviorsearch">
     <comment>BehaviorSearch model</comment>
     <comment xml:lang="en">BehaviorSearch model</comment>
     <glob pattern="*.bsearch" weight="50"/>
-    <icon name="com.danielvartan.netlogo.behaviorsearch"/>
+    <icon name="com.danielvartan.logopak.behaviorsearch"/>
   </mime-type>
 </mime-info>

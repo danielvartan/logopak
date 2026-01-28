@@ -19,6 +19,6 @@ jobs:
     - name: Build Flatpak
       uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
-        bundle: com.danielvartan.netlogo.flatpak
-        manifest-path: flatpak/com.danielvartan.netlogo.yaml
+        bundle: logopak.flatpak
+        manifest-path: flatpak/com.danielvartan.logopak.yaml
         cache-key: flatpak-builder-${{ github.sha }}

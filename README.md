@@ -31,7 +31,7 @@ The easiest way to install `LogoPak` is by using the pre-built Flatpak bundle:
 2. Install the bundle by running the following command in your terminal:
 
 ```bash
-flatpak install --user netlogo.flatpak
+flatpak install --user logopak.flatpak
 ```
 
 ### Building from Source
@@ -106,16 +106,16 @@ An easier way to distribute the application is by creating a Flatpak bundle. For
 ```bash
 cd flatpak
 flatpak-builder --repo=repo --force-clean build-dir com.danielvartan.netlogo.yaml
-flatpak build-bundle repo netlogo.flatpak com.danielvartan.netlogo
+flatpak build-bundle repo logopak.flatpak com.danielvartan.netlogo
 ```
 
-After creating the `netlogo.flatpak` bundle, you can share it with others. Anyone can install it with:
+After creating the `logopak.flatpak` bundle, you can share it with others. Anyone can install it with:
 
 ```bash
-flatpak install netlogo.flatpak
+flatpak install logopak.flatpak
 ```
 
-## Uninstalling the Package
+## Uninstalling
 
 To remove `LogoPak` from your system, run the following command:
 

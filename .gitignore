@@ -1,2 +1,7 @@
-/cache/
+.flatpak-builder/
+build-dir/
+cache/
+repo/
+repo/
 netlogo.flatpak
+logopak.flatpak

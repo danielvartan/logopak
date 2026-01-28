@@ -6,7 +6,7 @@ Use the following commands to resize the icons to 512x512 pixels for Flatpak pac
 magick mogrify -resize 512x512 *.png
 ```
 
-Then, rename the files with:
+Rename the files with:
 
 ```bash
 for file in *.png; do

@@ -24,8 +24,11 @@
     "bsearch",
     "danielvartan",
     "flathub",
+    "hubnet",
     "hubnetclient",
+    "launchable",
     "magick",
+    "mediatype",
     "metainfo",
     "mimetypes",
     "mogrify",
@@ -35,6 +38,7 @@
     "orcid",
     "pacman",
     "pulseaudio",
-    "Vartanian"
+    "Vartanian",
+    "Wilensky"
   ]
 }

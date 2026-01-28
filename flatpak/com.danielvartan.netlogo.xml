@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-netlogo">
+    <comment>NetLogo model</comment>
+    <comment xml:lang="en">NetLogo model</comment>
+    <glob pattern="*.nlogo" weight="50"/>
+    <glob pattern="*.nlogo3d" weight="50"/>
+    <glob pattern="*.nlogox" weight="50"/>
+    <glob pattern="*.nlogox3d" weight="50"/>
+    <icon name="com.danielvartan.netlogo.model"/>
+  </mime-type>
+  <mime-type type="application/x-behaviorsearch">
+    <comment>BehaviorSearch model</comment>
+    <comment xml:lang="en">BehaviorSearch model</comment>
+    <glob pattern="*.bsearch" weight="50"/>
+    <icon name="com.danielvartan.netlogo.behaviorsearch"/>
+  </mime-type>
+</mime-info>

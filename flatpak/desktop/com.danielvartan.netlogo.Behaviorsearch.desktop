@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=BehaviorSearch
+Comment=NetLogo BehaviorSearch tool
+Exec=Behaviorsearch %F
+Icon=com.danielvartan.netlogo.Behaviorsearch
+Categories=Education;Science;Java;
+Terminal=false
+MimeType=application/x-behaviorsearch;
+StartupWMClass=bsearch.fx.MainGUI

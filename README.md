@@ -76,7 +76,7 @@ With all dependencies in place, run the following commands to build `LogoPak`:
 
 ```bash
 cd flatpak
-flatpak-builder --force-clean build-dir com.danielvartan.netlogo.yaml
+flatpak-builder --force-clean build-dir com.danielvartan.logopak.yaml
 ```
 
 #### Installing Locally
@@ -85,21 +85,21 @@ Having built the package, you can now install it locally with:
 
 ```bash
 cd flatpak
-flatpak-builder --user --install --force-clean build-dir com.danielvartan.netlogo.yaml
+flatpak-builder --user --install --force-clean build-dir com.danielvartan.logopak.yaml
 ```
 
 Test your installation by running:
 
 ```bash
-flatpak run com.danielvartan.netlogo
+flatpak run com.danielvartan.logopak
 ```
 
 You can also launch the other applications:
 
 ```bash
-flatpak run --command=NetLogo3D com.danielvartan.netlogo
-flatpak run --command=HubNetClient com.danielvartan.netlogo
-flatpak run --command=Behaviorsearch com.danielvartan.netlogo
+flatpak run --command=NetLogo3D com.danielvartan.logopak
+flatpak run --command=HubNetClient com.danielvartan.logopak
+flatpak run --command=Behaviorsearch com.danielvartan.logopak
 ```
 
 #### Creating a Flatpak Bundle
@@ -108,8 +108,8 @@ An easier way to distribute the application is by creating a Flatpak bundle. For
 
 ```bash
 cd flatpak
-flatpak-builder --repo=repo --force-clean build-dir com.danielvartan.netlogo.yaml
-flatpak build-bundle repo logopak.flatpak com.danielvartan.netlogo
+flatpak-builder --repo=repo --force-clean build-dir com.danielvartan.logopak.yaml
+flatpak build-bundle repo logopak.flatpak com.danielvartan.logopak
 ```
 
 After creating the `logopak.flatpak` bundle, you can share it with others. Anyone can install it with:
@@ -123,13 +123,13 @@ flatpak install logopak.flatpak
 To remove `LogoPak` from your system, run the following command:
 
 ```bash
-flatpak uninstall com.danielvartan.netlogo
+flatpak uninstall com.danielvartan.logopak
 ```
 
 If you want to delete all associated user data as well? Add the `--delete-data` flag:
 
 ```bash
-flatpak uninstall --delete-data com.danielvartan.netlogo
+flatpak uninstall --delete-data com.danielvartan.logopak
 ```
 
 ## Contributing

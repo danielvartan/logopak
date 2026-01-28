@@ -109,7 +109,7 @@ An easier way to distribute the application is by creating a Flatpak bundle. For
 ```bash
 cd flatpak
 flatpak-builder --repo=repo --force-clean build-dir com.danielvartan.logopak.yaml
-flatpak build-bundle repo logopak.flatpak com.danielvartan.logopak
+flatpak build-bundle repo ../logopak.flatpak com.danielvartan.logopak
 ```
 
 After creating the `logopak.flatpak` bundle, you can share it with others. Anyone can install it with:

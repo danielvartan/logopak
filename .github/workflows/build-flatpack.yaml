@@ -16,9 +16,21 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v4
 
+    - name: Extract version from CITATION.cff
+      run: |
+        VERSION=$(
+          grep '^version:' CITATION.cff
+            | sed 's/version: *//'
+            | tr -d '"'
+            | tr -d "'"
+        )
+
+        echo "PACKAGE_VERSION=$VERSION" >> $GITHUB_ENV
+      shell: bash
+
     - name: Build Flatpak
       uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
-        bundle: logopak.flatpak
+        bundle: "logopak-${{ env.PACKAGE_VERSION }}.flatpak"
         manifest-path: flatpak/com.danielvartan.logopak.yaml
         cache-key: flatpak-builder-${{ github.sha }}

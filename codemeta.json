@@ -1,0 +1,73 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "LogoPak",
+  "dateCreated": "2026-01-27",
+  "applicationCategory": "",
+  "applicationSubCategory": "",
+  "name": "LogoPak: NetLogo Flatpak Package",
+  "author": [
+    {
+      "@type": "Person",
+      "familyName": "Vartanian",
+      "givenName": "Daniel",
+      "email": "danielvartan@proton.me",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of São Paulo",
+        "url": "https://www.usp.br"
+      },
+      "@id": "https://orcid.org/0000-0001-7782-759X"
+    }
+  ],
+  "copyrightHolder": {
+    "@type": "Person",
+    "familyName": "Vartanian",
+    "givenName": "Daniel",
+    "email": "danielvartan@proton.me",
+    "@id": "https://orcid.org/0000-0001-7782-759X"
+  },
+  "maintainer": {
+    "@type": "Person",
+    "familyName": "Vartanian",
+    "givenName": "Daniel",
+    "email": "danielvartan@proton.me",
+    "@id": "https://orcid.org/0000-0001-7782-759X"
+  },
+  "description": "LogoPak is a Flatpak package for NetLogo, a multi-agent programmable modeling environment for simulating natural and social phenomena. It simplifies the installation and management of NetLogo on Linux systems.",
+  "keywords": [
+    "Agent-Based Modeling",
+    "Applications",
+    "Complex Systems",
+    "Complexity Science",
+    "Computational Modeling",
+    "Flatpak",
+    "Individual Based Modeling",
+    "Multi-Agent Systems",
+    "NetLogo",
+    "Netlogo Models",
+    "Open Source",
+    "Package",
+    "Scientific Software",
+    "Scientific Computing",
+    "Simulations"
+  ],
+  "license": "https://www.gnu.org/licenses/gpl-3.0",
+  "codeRepository": "https://github.com/danielvartan/logopak",
+  "issueTracker": "https://github.com/danielvartan/logopak/issues",
+  "runtimePlatform": "Freedesktop",
+  "relatedLink": [
+    "https://github.com/sponsors/danielvartan"
+  ],
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "Bash",
+    "version": "5.3",
+    "url": "https://www.gnu.org/software/bash/"
+  },
+  "operatingSystem": "Linux",
+  "developmentStatus": "WIP",
+  "readme": "https://github.com/danielvartan/logopak/blob/main/README.md",
+  "releaseNotes": "https://github.com/danielvartan/logopak/blob/main/NEWS.md",
+  "version": "0.0.0.9000"
+}

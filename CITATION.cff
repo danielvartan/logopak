@@ -1,0 +1,47 @@
+cff-version: 1.2.0
+title: "LogoPak: NetLogo Flatpak Package"
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+type: software
+authors:
+  - given-names: Daniel
+    family-names: Vartanian
+    email: danielvartan@proton.me
+    affiliation: University of São Paulo
+    orcid: "https://orcid.org/0000-0001-7782-759X"
+abstract: >-
+  LogoPak is a Flatpak package for NetLogo, a multi-agent programmable modeling
+  environment for simulating natural and social phenomena. It simplifies the
+  installation and management of NetLogo on Linux systems.
+keywords:
+  - Agent-Based Modeling
+  - Applications
+  - Complex Systems
+  - Complexity Science
+  - Computational Modeling
+  - Flatpak
+  - Individual Based Modeling
+  - Multi-Agent Systems
+  - NetLogo
+  - Netlogo Models
+  - Open Source
+  - Package
+  - Scientific Software
+  - Scientific Computing
+  - Simulations
+preferred-citation:
+  type: software
+  title: "LogoPak: NetLogo Flatpak Package"
+  authors:
+    - family-names: Vartanian
+      given-names: Daniel
+      email: danielvartan@proton.me
+      orcid: https://orcid.org/0000-0001-7782-759X
+  url: https://github.com/danielvartan/logopak
+identifiers:
+  - type: url
+    value: https://github.com/danielvartan/logopak
+    description: GitHub Code Repository
+repository-code: https://github.com/danielvartan/logopak
+license: GPL-3.0-or-later
+version: 0.0.0.9000

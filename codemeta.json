@@ -68,8 +68,8 @@
     "url": "https://www.gnu.org/software/bash/"
   },
   "operatingSystem": "Linux",
-  "developmentStatus": "WIP",
+  "developmentStatus": "Active",
   "readme": "https://github.com/danielvartan/logopak/blob/main/README.md",
   "releaseNotes": "https://github.com/danielvartan/logopak/blob/main/NEWS.md",
-  "version": "0.2.0"
+  "version": "0.2.1.9000"
 }

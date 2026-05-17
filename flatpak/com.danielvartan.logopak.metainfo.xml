@@ -52,7 +52,7 @@
     <binary>NetLogo</binary>
     <binary>NetLogo3D</binary>
     <binary>HubNetClient</binary>
-    <binary>Behaviorsearch</binary>
+    <binary>BehaviorSearch</binary>
     <binary>netlogo</binary>
     <binary>netlogo3d</binary>
     <binary>hubnetclient</binary>
@@ -69,7 +69,7 @@
     <mimetype>application/x-behaviorsearch</mimetype>
   </mimetypes>
   <releases>
-    <release version="7.0.3" date="2025-12-01"/>
+    <release version="7.0.4" date="2026-04-27"/>
   </releases>
   <content_rating type="oars-1.1"/>
 </component>

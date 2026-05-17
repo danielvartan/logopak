@@ -1,5 +1,9 @@
 ## v0.2.1.9000 (development version)
 
+- Updated NetLogo to version 7.0.4.
+- Fixed the BehaviorSpace casing from `Behaviorsearch`.
+- Updated the documentation.
+
 ## v0.2.0 (2026-01-28)
 
 - Changed `app-id` to `com.danielvartan.logopak` to align with package naming conventions.

@@ -22,7 +22,7 @@ The package includes all four NetLogo applications (NetLogo, NetLogo 3D, HubNet 
 
 `LogoPak` is not yet available on [Flathub](https://flathub.org/). To install it, you can download and install the pre-built bundle or build it locally from source. This assumes you have [Flatpak](https://flatpak.org/) installed on your system.
 
-The current version of NetLogo included in `LogoPak` is **NetLogo 7.0.3**.
+The current version of NetLogo included in `LogoPak` is **NetLogo 7.0.4**.
 
 ### Using the Pre-built Bundle
 
@@ -110,7 +110,7 @@ You can also launch the other applications with:
 ```bash
 flatpak run --command=NetLogo3D com.danielvartan.logopak
 flatpak run --command=HubNetClient com.danielvartan.logopak
-flatpak run --command=Behaviorsearch com.danielvartan.logopak
+flatpak run --command=BehaviorSearch com.danielvartan.logopak
 ```
 
 ## NetLogo Home Directory

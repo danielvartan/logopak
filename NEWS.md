@@ -1,8 +1,8 @@
-## v0.2.1.9000 (development version)
+## v0.3.0 (2026-05-17)
 
 - Updated NetLogo to version 7.0.4.
 - Fixed the BehaviorSearch desktop file casing from `Behaviorsearch`.
-- Fixed "unable to open a browser" error in GNOME sessions by providing a `gnome-open` wrapper.
+- Fixed "unable to open a browser" error by adding a Java agent that restores `Desktop.Action.BROWSE` support inside the Flatpak sandbox.
 - Updated the documentation.
 
 ## v0.2.0 (2026-01-28)

@@ -30,19 +30,10 @@ keywords:
   - Scientific Software
   - Scientific Computing
   - Simulations
-preferred-citation:
-  type: software
-  title: "LogoPak: NetLogo Flatpak Package"
-  authors:
-    - family-names: Vartanian
-      given-names: Daniel
-      email: danielvartan@proton.me
-      orcid: https://orcid.org/0000-0001-7782-759X
-  url: https://github.com/danielvartan/logopak
 identifiers:
   - type: url
     value: https://github.com/danielvartan/logopak
     description: GitHub Code Repository
 repository-code: https://github.com/danielvartan/logopak
 license: GPL-3.0-or-later
-version: 0.2.1.9000
+version: 0.3.0

@@ -1,7 +1,8 @@
 ## v0.2.1.9000 (development version)
 
 - Updated NetLogo to version 7.0.4.
-- Fixed the BehaviorSpace casing from `Behaviorsearch`.
+- Fixed the BehaviorSearch desktop file casing from `Behaviorsearch`.
+- Fixed "unable to open a browser" error in GNOME sessions by providing a `gnome-open` wrapper.
 - Updated the documentation.
 
 ## v0.2.0 (2026-01-28)

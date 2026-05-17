@@ -23,10 +23,13 @@
     "BehaviorSearch",
     "bsearch",
     "danielvartan",
+    "dlopen",
     "flathub",
     "hubnet",
     "hubnetclient",
     "launchable",
+    "libgnome",
+    "libgnomevfs",
     "logopak",
     "magick",
     "mediatype",
@@ -39,6 +42,7 @@
     "orcid",
     "pacman",
     "pulseaudio",
+    "soname",
     "Vartanian",
     "Wilensky"
   ]

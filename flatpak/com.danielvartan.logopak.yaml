@@ -12,6 +12,7 @@ finish-args:
   - --socket=pulseaudio
   - --socket=x11
   - --socket=wayland
+  - --talk-name=org.freedesktop.portal.Desktop
 
 modules:
   - name: netlogo
@@ -56,6 +57,19 @@ modules:
 
       # Install AppStream metadata
       - install -Dm644 com.danielvartan.logopak.metainfo.xml /app/share/metainfo/com.danielvartan.logopak.metainfo.xml
+
+      # Install the Java agent that restores Desktop.Action.BROWSE support.
+      # JDK 17 removes BROWSE from XDesktopPeer.supportedActions because GVfs
+      # inside the Flatpak only reports "file"/"resource" URI schemes, not
+      # "http".
+      # The agent uses reflection to add BROWSE back after init completes.
+      - install -Dm644 browse-fix.jar /app/opt/netlogo/lib/app/browse-fix.jar
+      - |
+        for cfg in /app/opt/netlogo/lib/app/*.cfg; do
+          printf '\njava-options=-javaagent:/app/opt/netlogo/lib/app/browse-fix.jar\n' >> "$cfg"
+          printf 'java-options=--add-opens\n' >> "$cfg"
+          printf 'java-options=java.desktop/sun.awt.X11=ALL-UNNAMED\n' >> "$cfg"
+        done
     sources:
       - type: archive
         url: https://downloads.netlogo.org/7.0.4/NetLogo-7.0.4-64.tgz
@@ -64,6 +78,8 @@ modules:
         path: com.danielvartan.logopak.metainfo.xml
       - type: file
         path: com.danielvartan.logopak.xml
+      - type: file
+        path: browse-fix.jar
       - type: dir
         path: desktop
       - type: dir

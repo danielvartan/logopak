@@ -14,11 +14,9 @@
 
 The package includes all four NetLogo applications (NetLogo, NetLogo 3D, HubNet Client, and BehaviorSearch) and registers desktop files, file icons, and MIME types for NetLogo model files, enabling users to use NetLogo like any other native application on their system.
 
-![](images/showcase.png)
-
 > If you find this project useful, please consider giving it a star! &nbsp; [![GitHub Repository Stars](https://img.shields.io/github/stars/danielvartan/logopak)](https://github.com/danielvartan/logopak/)
 
-> The continuous development of `LogoActions` depends on community support. If you can afford to do so, please consider becoming a sponsor. &nbsp; [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
+![](images/showcase.png)
 
 ## Installation
 
@@ -39,23 +37,12 @@ flatpak install --user logopak.flatpak
 
 ### Building from Source
 
-To build `LogoPak` from source, start by cloning this repository:
+#### Prerequisites
+
+To build `LogoPak` from source, you'll need [Flatpak](https://flatpak.org/) and [`flatpak-builder`](https://docs.flatpak.org/en/latest/flatpak-builder.html) on your system. After installing these tools, start by cloning this repository:
 
 ```bash
 git clone https://github.com/danielvartan/logopak
-```
-
-You'll need [Flatpak](https://flatpak.org/) and [`flatpak-builder`](https://docs.flatpak.org/en/latest/flatpak-builder.html) on your system. Here's how to get them using your distribution's package manager:
-
-```bash
-# On Ubuntu/Debian
-sudo apt install flatpak flatpak-builder
-
-# On Fedora
-sudo dnf install flatpak flatpak-builder
-
-# On Arch Linux
-sudo pacman -S flatpak flatpak-builder
 ```
 
 Next, add the [Flathub](https://flathub.org/en) repository if you haven't done so already:
@@ -94,14 +81,6 @@ Test your installation by running:
 flatpak run com.danielvartan.logopak
 ```
 
-You can also launch the other applications:
-
-```bash
-flatpak run --command=NetLogo3D com.danielvartan.logopak
-flatpak run --command=HubNetClient com.danielvartan.logopak
-flatpak run --command=Behaviorsearch com.danielvartan.logopak
-```
-
 #### Creating a Flatpak Bundle
 
 An easier way to distribute the application is by creating a Flatpak bundle. For that, run the following commands:
@@ -116,6 +95,37 @@ After creating the `logopak.flatpak` bundle, you can share it with others. Anyon
 
 ```bash
 flatpak install logopak.flatpak
+```
+
+## Running LogoPak
+
+After installation, you can launch `LogoPak` from your application menu or by running the following command in your terminal:
+
+```bash
+flatpak run com.danielvartan.logopak
+```
+
+You can also launch the other applications with:
+
+```bash
+flatpak run --command=NetLogo3D com.danielvartan.logopak
+flatpak run --command=HubNetClient com.danielvartan.logopak
+flatpak run --command=Behaviorsearch com.danielvartan.logopak
+```
+
+## NetLogo Home Directory
+
+To find the current location of the NetLogo home directory in your system, you need to first determine the installation path of `LogoPak` using the following command:
+
+```bash
+LOGOPAK_LOCATION=$(flatpak info --show-location com.danielvartan.logopak)
+```
+
+After that, you can set the `NETLOGO_HOME` and `NETLOGO_CONSOLE` environment variables as follows:
+
+```bash
+export NETLOGO_HOME="${LOGOPAK_LOCATION}/files/opt/netlogo"
+export NETLOGO_CONSOLE="${NETLOGO_HOME}/NetLogo_Console"
 ```
 
 ## Uninstalling

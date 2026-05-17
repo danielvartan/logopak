@@ -18,6 +18,8 @@ jobs:
 
     - name: Extract version from CITATION.cff
       run: |
+        # Extract version from CITATION.cff
+
         version=$( \
           grep '^version:' CITATION.cff \
             | sed 's/version: *//' \

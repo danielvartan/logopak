@@ -27,6 +27,7 @@
     "flathub",
     "hubnet",
     "hubnetclient",
+    "javaagent",
     "launchable",
     "libgnome",
     "libgnomevfs",

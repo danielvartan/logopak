@@ -21,6 +21,11 @@ import java.util.List;
  */
 public class BrowseFix {
     public static void premain(String args, Instrumentation inst) {
+        // Headless runs (NetLogo --headless, BehaviorSpace batches) never open
+        // a browser and never start an EDT, so there is nothing to patch.
+        if (Boolean.getBoolean("java.awt.headless")) {
+            return;
+        }
         Thread t = new Thread(BrowseFix::waitForEdt, "browse-fix");
         t.setDaemon(true);
         t.start();

@@ -20,6 +20,8 @@
   },
   "peacock.color": "f61501",
   "cSpell.words": [
+    "APPDIR",
+    "behaviorsearch",
     "BehaviorSearch",
     "bsearch",
     "danielvartan",
@@ -28,6 +30,9 @@
     "hubnet",
     "hubnetclient",
     "javaagent",
+    "javac",
+    "jpackage",
+    "jpackage's",
     "launchable",
     "libgnome",
     "libgnomevfs",
@@ -42,9 +47,11 @@
     "nlogox",
     "orcid",
     "pacman",
+    "Premain",
     "pulseaudio",
     "soname",
     "Vartanian",
+    "wayland",
     "Wilensky"
   ]
 }

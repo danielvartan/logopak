@@ -113,6 +113,12 @@ flatpak run --command=HubNetClient com.danielvartan.logopak
 flatpak run --command=BehaviorSearch com.danielvartan.logopak
 ```
 
+You can also create an alias for easier access to NetLogo. Insert the following line into your shell configuration file (e.g., `~/.bashrc` or `~/.zshrc`):
+
+```bash
+alias NetLogo="flatpak run --command=netlogo com.danielvartan.logopak"
+```
+
 ## NetLogo Home Directory
 
 To find the current location of the NetLogo home directory in your system, you need to first determine the installation path of `LogoPak` using the following command:

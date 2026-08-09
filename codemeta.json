@@ -70,6 +70,6 @@
   "operatingSystem": "Linux",
   "developmentStatus": "Active",
   "readme": "https://github.com/danielvartan/logopak/blob/main/README.md",
-  "releaseNotes": "https://github.com/danielvartan/logopak/blob/main/NEWS.md",
+  "releaseNotes": "https://github.com/danielvartan/logopak/blob/main/CHANGELOG.md",
   "version": "0.3.1.9000"
 }

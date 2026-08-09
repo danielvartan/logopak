@@ -4,6 +4,9 @@ runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: NetLogo
 
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk17
+
 finish-args:
   - --device=dri
   - --filesystem=home
@@ -13,6 +16,11 @@ finish-args:
   - --socket=x11
   - --socket=wayland
   - --talk-name=org.freedesktop.portal.Desktop
+  # The shell launchers shipped by NetLogo (netlogo-headless.sh,
+  # netlogo-gui.sh, behaviorsearch_headless.sh) look for a JDK in JAVA_HOME.
+  # The runtime default points to /usr/lib/jvm/java-21-openjdk, which is not
+  # part of org.freedesktop.Platform, so point it at NetLogo's own runtime.
+  - --env=JAVA_HOME=/app/opt/netlogo/lib/runtime
 
 modules:
   - name: netlogo
@@ -25,14 +33,22 @@ modules:
       # Create symlinks for executables
       - mkdir -p /app/bin
       - |
-        for file in NetLogo NetLogo3D HubNetClient BehaviorSearch; do
+        for file in HubNetClient BehaviorSearch; do
           ln -s /app/opt/netlogo/bin/${file} /app/bin/${file}
         done
 
+      # NetLogo and NetLogo 3D go through a launcher that picks the graphical
+      # or the batch entry point, so that "NetLogo --headless" works from the
+      # same command name as the graphical one.
+      - install -Dm755 netlogo-launcher.sh /app/opt/netlogo/netlogo-launcher.sh
+      - |
+        ln -s /app/opt/netlogo/netlogo-launcher.sh /app/bin/NetLogo
+        ln -s /app/opt/netlogo/netlogo-launcher.sh /app/bin/NetLogo3D
+
       # Create lowercase command aliases
       - |
-        ln -s /app/opt/netlogo/bin/NetLogo /app/bin/netlogo
-        ln -s /app/opt/netlogo/bin/NetLogo3D /app/bin/netlogo3d
+        ln -s /app/opt/netlogo/netlogo-launcher.sh /app/bin/netlogo
+        ln -s /app/opt/netlogo/netlogo-launcher.sh /app/bin/netlogo3d
         ln -s /app/opt/netlogo/bin/HubNetClient /app/bin/hubnetclient
         ln -s /app/opt/netlogo/bin/BehaviorSearch /app/bin/behaviorsearch
 
@@ -58,18 +74,50 @@ modules:
       # Install AppStream metadata
       - install -Dm644 com.danielvartan.logopak.metainfo.xml /app/share/metainfo/com.danielvartan.logopak.metainfo.xml
 
-      # Install the Java agent that restores Desktop.Action.BROWSE support.
+      # Build the Java agent that restores Desktop.Action.BROWSE support.
       # JDK 17 removes BROWSE from XDesktopPeer.supportedActions because GVfs
       # inside the Flatpak only reports "file"/"resource" URI schemes, not
       # "http".
       # The agent uses reflection to add BROWSE back after init completes.
-      - install -Dm644 browse-fix.jar /app/opt/netlogo/lib/app/browse-fix.jar
+      # It is compiled here with the same JDK version that NetLogo bundles, so
+      # the shipped jar can never be a stale or truncated binary.
+      - |
+        set -e
+        . /usr/lib/sdk/openjdk17/enable.sh
+        mkdir -p browse-fix/classes
+        javac -d browse-fix/classes BrowseFix.java
+        printf 'Premain-Class: BrowseFix\n' > browse-fix/manifest.txt
+        jar --create --file browse-fix/browse-fix.jar \
+          --manifest browse-fix/manifest.txt -C browse-fix/classes .
+        # Fail the build here instead of shipping a jar the JVM cannot open.
+        jar --list --file browse-fix/browse-fix.jar
+        install -Dm644 browse-fix/browse-fix.jar \
+          /app/opt/netlogo/lib/app/browse-fix.jar
+        rm -f /app/opt/netlogo/BrowseFix.java
+
+      # Attach the agent to the graphical launchers. The path is written as
+      # $APPDIR/browse-fix.jar (jpackage expands it at launch) instead of an
+      # absolute /app path: a -javaagent that cannot be resolved aborts the JVM
+      # before it starts, so the option must stay valid wherever the app image
+      # is mounted (flatpak-builder build dir, `flatpak build` shell, bundle).
       - |
         for cfg in /app/opt/netlogo/lib/app/*.cfg; do
-          printf '\njava-options=-javaagent:/app/opt/netlogo/lib/app/browse-fix.jar\n' >> "$cfg"
+          printf '\njava-options=-javaagent:$APPDIR/browse-fix.jar\n' >> "$cfg"
           printf 'java-options=--add-opens\n' >> "$cfg"
           printf 'java-options=java.desktop/sun.awt.X11=ALL-UNNAMED\n' >> "$cfg"
         done
+
+      # Expose the bundled JDK, so that NetLogo's own shell launchers and any
+      # script the user points at them find a JVM.
+      - ln -s /app/opt/netlogo/lib/runtime/bin/java /app/bin/java
+
+      # BehaviorSearch has no --headless flag to switch on, so its batch entry
+      # point gets its own command.
+      - |
+        printf '#!/bin/sh\nexec "%s" "$@"\n' \
+          /app/opt/netlogo/behaviorsearch/behaviorsearch_headless.sh \
+          > /app/bin/behaviorsearch-headless
+        chmod 755 /app/bin/behaviorsearch-headless
     sources:
       - type: archive
         url: https://downloads.netlogo.org/7.0.4/NetLogo-7.0.4-64.tgz
@@ -79,7 +127,9 @@ modules:
       - type: file
         path: com.danielvartan.logopak.xml
       - type: file
-        path: browse-fix.jar
+        path: BrowseFix.java
+      - type: file
+        path: netlogo-launcher.sh
       - type: dir
         path: desktop
       - type: dir

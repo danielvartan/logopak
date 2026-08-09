@@ -82,6 +82,7 @@ modules:
       # It is compiled here with the same JDK version that NetLogo bundles, so
       # the shipped jar can never be a stale or truncated binary.
       - |
+        set -e
         . /usr/lib/sdk/openjdk17/enable.sh
         mkdir -p browse-fix/classes
         javac -d browse-fix/classes BrowseFix.java

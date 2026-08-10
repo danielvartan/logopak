@@ -23,39 +23,60 @@ Keep the two in sync when either one changes.
 1. Tag and push the release in this repository (for example `v1.0.0`).
 2. Point the `git` source in `com.danielvartan.logopak.yaml` at that tag and at the commit it resolves to:
 
-   ```bash
-   git rev-parse v1.0.0^{commit}
-   ```
+  ```bash
+  git rev-parse v1.0.0^{commit}
+  ```
 
 3. Build and test with the submitted manifest itself:
 
-   ```bash
-   flatpak install -y flathub org.flatpak.Builder
-   flatpak run org.flatpak.Builder --force-clean --sandbox --user \
-     --install-deps-from=flathub --ccache \
-     --compose-url-policy=full \
-     --mirror-screenshots-url=https://dl.flathub.org/media \
-     --repo=repo build-dir flathub/com.danielvartan.logopak.yaml
-   ```
+  ```bash
+  flatpak install -y flathub org.flatpak.Builder
+  flatpak run org.flatpak.Builder --force-clean --sandbox --user \
+    --install-deps-from=flathub --ccache \
+    --compose-url-policy=full \
+    --mirror-screenshots-url=https://dl.flathub.org/media \
+    --repo=repo build-dir flathub/com.danielvartan.logopak.yaml
+  ```
 
    `--compose-url-policy=full` is what turns the screenshot and icon URLs
    absolute. Without it the linter reports `appstream-external-screenshot-url`
    and `appstream-remote-icon-not-mirrored`.
 
+   If the build stops at `cannot use bare repository`, `safe.bareRepository` is
+   set to `explicit` in the local Git configuration and Flatpak Builder cannot
+   make the mirror clone it needs for the `git` source. Flathub's builders do
+   not set it. Pass it through for the run:
+
+  ```bash
+  flatpak run --env=GIT_CONFIG_COUNT=1 \
+    --env=GIT_CONFIG_KEY_0=safe.bareRepository \
+    --env=GIT_CONFIG_VALUE_0=all \
+    org.flatpak.Builder --force-clean --sandbox --user \
+    --install-deps-from=flathub --ccache \
+    --compose-url-policy=full \
+    --mirror-screenshots-url=https://dl.flathub.org/media \
+    --repo=repo build-dir flathub/com.danielvartan.logopak.yaml
+  ```
+
 4. Run the linter. Both warnings and errors are fatal on Flathub:
 
-   ```bash
-   flatpak run --command=flatpak-builder-lint org.flatpak.Builder \
-     manifest flathub/com.danielvartan.logopak.yaml
-   flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
-   ```
+  ```bash
+  flatpak run --command=flatpak-builder-lint org.flatpak.Builder \
+    manifest flathub/com.danielvartan.logopak.yaml
+  ```
+
+  ```bash
+  flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
+  ```
 
 `finish-args-home-filesystem-access` is expected and needs an exception from the reviewers. See the justification in the manifest comments.
 
 ## Opening the Submission Pull Request
 
+Change `<logopak>` to the path of this repository, and `<flathub-fork>` to the fork of `flathub/flathub`:
+
 ```bash
-git clone --branch=new-pr git@github.com:<your-fork>/flathub.git
+git clone --branch=new-pr git@github.com:<flathub-fork>/flathub.git
 cd flathub
 git checkout -b com.danielvartan.logopak
 cp <logopak>/flathub/com.danielvartan.logopak.yaml .

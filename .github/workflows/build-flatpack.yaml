@@ -59,9 +59,11 @@ jobs:
         done
 
     - name: Lint manifests
-      # Once Flathub grants the exception, drop `continue-on-error: true`
-      # and have the job fail properly on regressions.
-      continue-on-error: true
+      env:
+        # Errors that are known and accepted. `--filesystem=home` is one that
+        # Flathub has to grant an exception for, so it is reported on every
+        # run. Remove it from here once that exception is in place.
+        ALLOWED_ERRORS: finish-args-home-filesystem-access
       run: |
         # Lint manifests
 
@@ -72,8 +74,44 @@ jobs:
         # inside the Flatpak sandbox, so run from the sandbox's own /tmp, which
         # is private to it, and point the linter at the manifests by absolute
         # path.
+        #
+        # The linter exits non-zero for the accepted errors as well, so the
+        # output is read instead of the exit code, and every manifest is
+        # checked before the step gives its verdict.
+        status=0
+
         for file in flatpak/com.danielvartan.logopak.yaml \
                     flathub/com.danielvartan.logopak.yaml; do
+          echo "::group::${file}"
+
           flatpak run --command=sh org.flatpak.Builder -c \
-            "cd /tmp && flatpak-builder-lint manifest '${GITHUB_WORKSPACE}/${file}'"
+            "cd /tmp && flatpak-builder-lint manifest '${GITHUB_WORKSPACE}/${file}'" \
+            > lint.json || true
+          cat lint.json
+
+          python3 - "$file" <<'PY' || status=1
+        import json, os, sys
+
+        allowed = set(os.environ["ALLOWED_ERRORS"].split())
+
+        # A linter that crashed writes nothing to stdout. Treat that as a
+        # failure, so that a broken run cannot pass for a clean one.
+        try:
+            with open("lint.json") as file:
+                report = json.load(file)
+        except (OSError, ValueError):
+            print(f"::error file={sys.argv[1]}::The linter produced no report")
+            sys.exit(1)
+
+        found = set(report.get("errors", [])) | set(report.get("warnings", []))
+        unexpected = sorted(found - allowed)
+
+        if unexpected:
+            print(f"::error file={sys.argv[1]}::Unexpected: {', '.join(unexpected)}")
+            sys.exit(1)
+        PY
+
+          echo "::endgroup::"
         done
+
+        exit "${status}"

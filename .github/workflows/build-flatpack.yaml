@@ -14,7 +14,7 @@ jobs:
       options: --privileged
     steps:
     - name: Check out repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Extract version from CITATION.cff
       run: |
@@ -46,7 +46,7 @@ jobs:
       options: --privileged
     steps:
     - name: Check out repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Validate metadata
       run: |
@@ -59,13 +59,22 @@ jobs:
         done
 
     - name: Lint manifests
+      # Once Flathub grants the exception, drop `continue-on-error: true`
+      # and have the job fail properly on regressions.
       continue-on-error: true
       run: |
         # Lint manifests
 
         flatpak install -y --noninteractive flathub org.flatpak.Builder
+
+        # The linter runs flatpak-builder, which puts its state directory in
+        # the working directory. The workspace is not writable by the user
+        # this container runs as, so work from a temporary directory and point
+        # the linter at the manifests by absolute path.
+        cd "${RUNNER_TEMP}"
+
         for file in flatpak/com.danielvartan.logopak.yaml \
                     flathub/com.danielvartan.logopak.yaml; do
           flatpak run --command=flatpak-builder-lint org.flatpak.Builder \
-            manifest "$file"
+            manifest "${GITHUB_WORKSPACE}/${file}"
         done

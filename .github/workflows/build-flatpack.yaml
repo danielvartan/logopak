@@ -67,14 +67,13 @@ jobs:
 
         flatpak install -y --noninteractive flathub org.flatpak.Builder
 
-        # The linter runs flatpak-builder, which puts its state directory in
-        # the working directory. The workspace is not writable by the user
-        # this container runs as, so work from a temporary directory and point
-        # the linter at the manifests by absolute path.
-        cd "${RUNNER_TEMP}"
-
+        # The linter runs flatpak-builder, which creates its state directory in
+        # the working directory. Nothing the runner mounts is writable from
+        # inside the Flatpak sandbox, so run from the sandbox's own /tmp, which
+        # is private to it, and point the linter at the manifests by absolute
+        # path.
         for file in flatpak/com.danielvartan.logopak.yaml \
                     flathub/com.danielvartan.logopak.yaml; do
-          flatpak run --command=flatpak-builder-lint org.flatpak.Builder \
-            manifest "${GITHUB_WORKSPACE}/${file}"
+          flatpak run --command=sh org.flatpak.Builder -c \
+            "cd /tmp && flatpak-builder-lint manifest '${GITHUB_WORKSPACE}/${file}'"
         done

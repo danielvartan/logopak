@@ -99,30 +99,35 @@ flatpak install logopak.flatpak
 
 #### Linting
 
-Flathub runs a linter over the manifest and the built repository, and treats
-both warnings and errors as fatal. To run the same checks locally:
+Flathub runs a linter over the manifest and the built repository, and treats both warnings and errors as fatal. To run the same checks locally:
 
 ```bash
 flatpak install flathub org.flatpak.Builder
+```
 
+```bash
 cd flatpak
+```
+
+```bash
 flatpak run org.flatpak.Builder --force-clean --sandbox --user \
   --install-deps-from=flathub --ccache \
   --mirror-screenshots-url=https://dl.flathub.org/media \
   --repo=repo build-dir com.danielvartan.logopak.yaml
+```
 
+```bash
 flatpak run --command=flatpak-builder-lint org.flatpak.Builder \
   manifest com.danielvartan.logopak.yaml
+```
+
+```bash
 flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
 ```
 
-The `finish-args-home-filesystem-access` error is expected: NetLogo is a Swing
-application, so its file dialogs are not portal backed and models read and
-write data files wherever they live. It requires an exception from the Flathub
-reviewers.
+The `finish-args-home-filesystem-access` error is expected: NetLogo is a Swing application, so its file dialogs are not portal backed and models read and write data files wherever they live. It requires an exception from the Flathub reviewers.
 
-See [`flathub/README.md`](flathub/README.md) for the submission files and the
-steps to open or update the Flathub pull request.
+See [`flathub/README.md`](flathub/README.md) for the submission files and the steps to open or update the Flathub pull request.
 
 ## Running LogoPak
 

@@ -7,5 +7,5 @@ Exec=NetLogo3D %F
 Icon=com.danielvartan.logopak.NetLogo3D
 Categories=Education;Science;
 Terminal=false
-MimeType=application/x-netlogo;
+MimeType=application/x-netlogo-3d;
 Keywords=agent-based;simulation;modeling;3D;Logo;

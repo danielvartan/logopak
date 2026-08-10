@@ -112,6 +112,7 @@ cd flatpak
 ```bash
 flatpak run org.flatpak.Builder --force-clean --sandbox --user \
   --install-deps-from=flathub --ccache \
+  --compose-url-policy=full \
   --mirror-screenshots-url=https://dl.flathub.org/media \
   --repo=repo build-dir com.danielvartan.logopak.yaml
 ```
@@ -124,6 +125,8 @@ flatpak run --command=flatpak-builder-lint org.flatpak.Builder \
 ```bash
 flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
 ```
+
+Both flags matter. Without `--compose-url-policy=full`, the screenshot and icon URLs are written relative to a `media_baseurl` attribute that the linter does not resolve, and it reports `appstream-external-screenshot-url` and `appstream-remote-icon-not-mirrored`. Flathub's own builders pass both flags.
 
 The `finish-args-home-filesystem-access` error is expected: NetLogo is a Swing application, so its file dialogs are not portal backed and models read and write data files wherever they live. It requires an exception from the Flathub reviewers.
 
@@ -149,6 +152,29 @@ You can also create an alias for easier access to NetLogo. Insert the following 
 
 ```bash
 alias NetLogo="flatpak run --command=netlogo com.danielvartan.logopak"
+```
+
+## File Associations
+
+`LogoPak` registers two file types, so that model files open in the application that can run them:
+
+| Type | Extensions | Opens in |
+| --- | --- | --- |
+| `application/x-netlogo` | `.nlogo`, `.nlogox` | NetLogo |
+| `application/x-netlogo-3d` | `.nlogo3d`, `.nlogox3d` | NetLogo 3D |
+| `application/x-behaviorsearch` | `.bsearch` | BehaviorSearch |
+
+If a model opens in the wrong application, check whether an earlier NetLogo installation left its own definitions behind:
+
+```bash
+ls /usr/share/mime/packages/ | grep -i netlogo
+```
+
+A file there takes precedence over the ones a Flatpak provides. Remove it and rebuild the database:
+
+```bash
+sudo rm /usr/share/mime/packages/netlogo.xml
+sudo update-mime-database /usr/share/mime
 ```
 
 ## NetLogo Home Directory

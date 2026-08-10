@@ -4,8 +4,17 @@
     <comment>NetLogo model</comment>
     <comment xml:lang="en">NetLogo model</comment>
     <glob pattern="*.nlogo" weight="50"/>
-    <glob pattern="*.nlogo3d" weight="50"/>
     <glob pattern="*.nlogox" weight="50"/>
+    <icon name="com.danielvartan.logopak.model"/>
+  </mime-type>
+  <!--
+    Three dimensional models are their own type, so that opening one starts
+    NetLogo 3D. The two dimensional application cannot run them.
+  -->
+  <mime-type type="application/x-netlogo-3d">
+    <comment>NetLogo 3D model</comment>
+    <comment xml:lang="en">NetLogo 3D model</comment>
+    <glob pattern="*.nlogo3d" weight="50"/>
     <glob pattern="*.nlogox3d" weight="50"/>
     <icon name="com.danielvartan.logopak.model"/>
   </mime-type>

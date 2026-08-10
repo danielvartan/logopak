@@ -20,11 +20,11 @@ Keep the two in sync when either one changes.
 
 ## Before Submitting or Updating
 
-1. Tag and push the release in this repository (for example `v0.4.0`).
+1. Tag and push the release in this repository (for example `v1.0.0`).
 2. Point the `git` source in `com.danielvartan.logopak.yaml` at that tag and at the commit it resolves to:
 
    ```bash
-   git rev-parse v0.4.0^{commit}
+   git rev-parse v1.0.0^{commit}
    ```
 
 3. Build and test with the submitted manifest itself:
@@ -33,9 +33,14 @@ Keep the two in sync when either one changes.
    flatpak install -y flathub org.flatpak.Builder
    flatpak run org.flatpak.Builder --force-clean --sandbox --user \
      --install-deps-from=flathub --ccache \
+     --compose-url-policy=full \
      --mirror-screenshots-url=https://dl.flathub.org/media \
      --repo=repo build-dir flathub/com.danielvartan.logopak.yaml
    ```
+
+   `--compose-url-policy=full` is what turns the screenshot and icon URLs
+   absolute. Without it the linter reports `appstream-external-screenshot-url`
+   and `appstream-remote-icon-not-mirrored`.
 
 4. Run the linter. Both warnings and errors are fatal on Flathub:
 

@@ -30,6 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/). The proj
 - Application icons are now installed under `hicolor/512x512`, matching their actual size.
 - Dropped the `Java` category and the portal `--talk-name` from the desktop files and the manifest, which Flathub's linter rejects.
 - Dropped the unused `--socket=wayland` permission. The JVM has no Wayland backend, so NetLogo always draws through X11.
+- Three dimensional models (`.nlogo3d` and `.nlogox3d`) now have their own file type, `application/x-netlogo-3d`, and open in NetLogo 3D. They used to share a type with two dimensional models, so the desktop could hand them to the application that cannot run them.
 - NetLogo's own installer script is no longer shipped, since it has nothing to do inside the sandbox.
 - Reworded the summary to "Simulate complex systems", following Flathub's wording rules.
 - The build workflow now runs on the `freedesktop-25.08` image and mirrors screenshots the way Flathub does.

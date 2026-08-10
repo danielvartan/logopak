@@ -91,6 +91,7 @@
     <binary>hubnetclient</binary>
     <binary>behaviorsearch</binary>
     <mediatype>application/x-netlogo</mediatype>
+    <mediatype>application/x-netlogo-3d</mediatype>
     <mediatype>application/x-behaviorsearch</mediatype>
   </provides>
   <categories>
@@ -107,9 +108,19 @@
   <content_rating type="oars-1.1"/>
   <releases>
     <release version="7.0.4" date="2026-04-27">
-      <url type="details">https://docs.netlogo.org/versions.html</url>
+      <url type="details">https://docs.netlogo.org/versions#version-704-april-2026</url>
       <description>
-        <p>NetLogo 7.0.4, a bug fix release of the NetLogo 7 series.</p>
+        <p>This release adds:</p>
+        <ul>
+          <li>A choice of font for the code editor</li>
+          <li>Help pages from the bundled manual when there is no connection</li>
+          <li>A record of the version that ran each BehaviorSpace experiment</li>
+          <li>A warning before a paused experiment is discarded</li>
+        </ul>
+        <p>
+          It also fixes bugs in the widgets, the code editor, the extensions,
+          HubNet and the dark theme.
+        </p>
       </description>
     </release>
   </releases>

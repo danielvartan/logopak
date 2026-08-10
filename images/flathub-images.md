@@ -48,7 +48,7 @@ wmctrl -r "3D View" -e 0,112,75,950,613
 2. Go to *File > Models Library*.
 3. Select and open the *Chloroplast and Food* model from the *Sample Models > Biology* category.
 4. Go to *Zoom > Smaller* (2x).
-5. If the an asterisk appears next to the model name, go to *File > Recent Files* and click on the first entry to reload the model.
+5. If an asterisk appears next to the model name, go to *File > Recent Files* and click on the first entry to reload the model.
 6. Resize the window (see *Window Size* settings).
 7. Click `setup` and then `go`.
 8. Run until the 2000th tick, then click `go` again to pause the model.

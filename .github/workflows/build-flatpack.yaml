@@ -10,7 +10,7 @@ jobs:
     name: Build Flatpak
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-48
+      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-25.08
       options: --privileged
     steps:
     - name: Check out repository
@@ -36,3 +36,36 @@ jobs:
         bundle: "logopak-v${{ env.PACKAGE_VERSION }}.flatpak"
         manifest-path: flatpak/com.danielvartan.logopak.yaml
         cache-key: flatpak-builder-${{ github.sha }}
+        mirror-screenshots-url: https://dl.flathub.org/media
+
+  lint:
+    name: Lint manifest
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-25.08
+      options: --privileged
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Validate metadata
+      run: |
+        # Validate metadata
+
+        appstreamcli validate --no-net \
+          flatpak/com.danielvartan.logopak.metainfo.xml
+        for file in flatpak/desktop/*.desktop; do
+          desktop-file-validate --no-hints "$file"
+        done
+
+    - name: Lint manifests
+      continue-on-error: true
+      run: |
+        # Lint manifests
+
+        flatpak install -y --noninteractive flathub org.flatpak.Builder
+        for file in flatpak/com.danielvartan.logopak.yaml \
+                    flathub/com.danielvartan.logopak.yaml; do
+          flatpak run --command=flatpak-builder-lint org.flatpak.Builder \
+            manifest "$file"
+        done

@@ -2,10 +2,11 @@
 Type=Application
 Version=1.0
 Name=NetLogo
-Comment=A multi-agent programmable modeling environment
+Comment=Simulate complex systems
 Exec=NetLogo %F
 Icon=com.danielvartan.logopak.NetLogo
-Categories=Education;Science;Java;
+Categories=Education;Science;
 Terminal=false
 MimeType=application/x-netlogo;
 StartupWMClass=org-nlogo-app-App
+Keywords=agent-based;simulation;modeling;complex systems;Logo;

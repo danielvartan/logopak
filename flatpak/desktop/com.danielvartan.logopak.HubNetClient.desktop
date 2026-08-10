@@ -5,6 +5,6 @@ Name=HubNet Client
 Comment=NetLogo HubNet Client
 Exec=HubNetClient
 Icon=com.danielvartan.logopak.HubNetClient
-Categories=Education;Science;Java;
+Categories=Education;Science;
 Terminal=false
 StartupWMClass=org-nlogo-hubnet-client-App

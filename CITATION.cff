@@ -24,16 +24,18 @@ keywords:
   - Individual Based Modeling
   - Linux
   - Multi-Agent Systems
+  - Modeling
   - NetLogo
+  - Logo
   - Open Source
   - Package
   - Scientific Software
   - Scientific Computing
-  - Simulations
+  - Simulation
 identifiers:
   - type: url
     value: https://github.com/danielvartan/logopak
     description: GitHub Code Repository
 repository-code: https://github.com/danielvartan/logopak
 license: GPL-3.0-or-later
-version: 0.3.1.9000
+version: 1.0.0

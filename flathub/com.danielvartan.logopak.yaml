@@ -38,6 +38,18 @@ modules:
     build-commands:
       - sh flatpak/build.sh
     sources:
+      # Packaging files: build script, launcher, desktop files, icons, MIME
+      # definitions, metadata and licenses. They are kept in the LogoPak
+      # repository so that there is a single copy of them.
+      - type: git
+        url: https://github.com/danielvartan/logopak.git
+        tag: v0.4.0
+        # Replace with the commit the tag points at before opening the PR:
+        # git rev-parse v0.4.0^{commit}
+        commit: f111505f2c93859cf7c8a5884e2f5e325bf514a4
+        x-checker-data:
+          type: git
+          tag-pattern: '^v([\d.]+)$'
       - type: archive
         url: https://downloads.netlogo.org/7.0.4/NetLogo-7.0.4-64.tgz
         sha256: 75636b8469ea4995ec051cfbc91e525f171be84b8f959b86bc080fbff702dfbc
@@ -47,14 +59,3 @@ modules:
           url: https://downloads.netlogo.org/
           version-pattern: 'href="([\d.]+)/"'
           url-template: https://downloads.netlogo.org/$version/NetLogo-$version-64.tgz
-      # Local build: take the packaging files straight from the working tree,
-      # so that a change can be tested before it is committed. The manifest
-      # submitted to Flathub fetches the same layout from a tagged commit
-      # instead (see ../flathub/).
-      - type: dir
-        path: .
-        dest: flatpak
-        skip:
-          - .flatpak-builder
-          - build-dir
-          - repo

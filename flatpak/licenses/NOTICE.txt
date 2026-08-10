@@ -1,0 +1,32 @@
+LogoPak
+=======
+
+LogoPak is an unofficial Flatpak package of NetLogo. It is maintained by
+Daniel Vartanian and is not affiliated with, nor endorsed by, Northwestern
+University or the Center for Connected Learning and Computer-Based Modeling.
+
+NetLogo
+-------
+
+Copyright (C) 1999-2026 Uri Wilensky. Center for Connected Learning and
+Computer-Based Modeling, Northwestern University, Evanston, IL.
+
+NetLogo is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 2 of the License, or (at your option) any later
+version. The full text of that license is in NetLogo-COPYING.txt.
+
+Homepage: https://www.netlogo.org
+License details: https://docs.netlogo.org/copyright.html
+
+The NetLogo User Manual bundled with the application is distributed under the
+Creative Commons Attribution-ShareAlike 3.0 Unported License.
+
+Packaging
+---------
+
+The packaging files (manifest, build script, launcher, desktop files, MIME
+definitions, and metadata) are Copyright (C) 2025-2026 Daniel Vartanian and
+are released under the GNU General Public License, version 3 or later.
+
+Source: https://github.com/danielvartan/logopak
